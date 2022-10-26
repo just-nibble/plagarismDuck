@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="d-flex">
+    <div class="container main-container">
+        <div class="row nm-aic">
+            <div class="col-md-6 col-lg-5 offset-lg-1 nm-mb-1 nm-mb-md-1">
+                <div class="card">
+                    <div class="card-content">
+                        <h2 class="nm-tc nm-mb-1">Check for Plagarism</h2>
+                        <form action="/check_paragraph/" method="POST" id="paragraph-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="inputEmail">Enter Paragraph</label>
+                                {{form.paragraph}}
+                            </div>
+
+                            <button type="submit" class="btn btn-block btn-primary text-uppercase nm-btn">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-5 offset-lg-1">
+                <h2 class="large">Results appear here</h2>
+                <ul class="list-unstyled mb-11" id="results">
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
