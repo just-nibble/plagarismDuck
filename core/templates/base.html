@@ -9,14 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Required meta tags // -->
 
-    <meta name="description" content="Login and Register Form HTML Template - developed by 'ceosdesigns' - sold exclusively on 'themeforest.net'">
+    <meta name="description" content="">
 	<meta name="author" content="ceosdesigns.sk">
 
-    <title>Nimoy · Login and Register Form HTML Template</title>
-
-	<!-- // Favicon -->
-	<link href="{% static 'images/favicon.png' %}" rel="icon">
-	<!-- Favicon // -->
+    <title>Plagarism Duck</title>
 
 	<!-- // Google Web Fonts -->
 	<!-- <link href="../../../fonts.googleapis.com/css57b7.css?family=Open+Sans:400,600&amp;display=swap" rel="stylesheet"> -->
@@ -39,6 +35,55 @@
 			<div></div>
 		</div>
 	</div>
+
+	<style>
+		body {
+        background: #ececec;
+    }
+    /*Hidden class for adding and removing*/
+    .lds-dual-ring.hidden {
+        display: none;
+    }
+
+    /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,.8);
+        z-index: 999;
+        opacity: 1;
+        transition: all 0.5s;
+    }
+    
+    /*Spinner Styles*/
+    .lds-dual-ring {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 5% auto;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+	</style>
 	<!-- Preloader // -->
 
 	{% block content %}

@@ -24,8 +24,12 @@ $.ajaxSetup({
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
+        $('#loader').removeClass('hidden');
+        $("#results").empty();
+        $('#submit_btn').prop('disabled', true);
     }
 });
+
 
 function check_paragraph() {
     console.log("create post is working!") // sanity check
@@ -39,10 +43,22 @@ function check_paragraph() {
             $('#paragraph-text').val(''); // remove the value from the input
             console.log(json); // log the returned json to the console
             
-            for(i=0; i<10; i++){
-                $("#results").prepend("<li><div class='list nm-aic'><div class='icon'><i class='fas fa-briefcase'></i></div><div class='content'><p><a href="+json[i].href+">"+json[i].title+"</a></p></div></div></li>");
+            if (json[0]){
+                for(i=0; i<10; i++){
+                    $("#results").prepend("<li><div class='list nm-aic'><div class='icon'><i class='fas fa-briefcase'></i></div><div class='content'><p><a href="+json[i].href+">"+json[i].title+"</a></p></div></div></li>");
+                }
+            }else{
+                $("#results").prepend(
+                    "<li><div class='list nm-aic'><div class='icon'><i class='fas fa-briefcase'></i></div><div class='content'><p>No results found</p></div></div></li>"
+                )
             }
+            
             console.log("success"); // another sanity check
+            
+        },
+        complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+            $('#loader').addClass('hidden');
+            $('#submit_btn').prop('disabled', false);
         },
 
         // handle a non-successful response
@@ -53,6 +69,7 @@ function check_paragraph() {
         }
     });
 };
+
 
 $('#paragraph-form').on('submit', function(event){
     event.preventDefault();
